@@ -89,8 +89,8 @@
 	<Modal bind:showModal>
 		{#if lightboxPost}
 			<CldImage
-				width="1200"
-				height="1200"
+				width="800"
+				height="800"
 				src={lightboxPost.url}
 				alt={lightboxPost.id}
 				sizes="80vw"
