@@ -23,7 +23,7 @@ export async function getIllustrations(): Promise<Illustrations> {
 
 	await cloudinary.v2.search
 		.expression('folder:illustration')
-		.sort_by('public_id', 'desc')
+		.sort_by('public_id', 'asc')
 		.max_results(800)
 		.with_field('tags')
 		.execute()
