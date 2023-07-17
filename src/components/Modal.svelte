@@ -49,8 +49,8 @@
 <style>
 	/* panda styles for dialog were messing with the modal */
 	dialog {
-		max-width: 95vh;
-		max-height: 95vh;
+		max-width: 800px;
+		max-height: 800px;
 		width: 100%;
 		margin: auto auto;
 		aspect-ratio: 1/1;
