@@ -2,12 +2,13 @@
 	import '../app.css';
 	import { hstack, vstack } from 'styled-system/patterns';
 	import { ILLUSTRATION_CATEGORIES } from '$lib/constants';
+	import { sortCategories } from '$lib/utils';
 	import { css } from '../../styled-system/css';
 
-	const postGroups = Object.keys(ILLUSTRATION_CATEGORIES);
+	const postGroups = Object.keys(ILLUSTRATION_CATEGORIES).sort(sortCategories);
 </script>
 
-<div id="root" class={vstack({ gap: '6', maxW: '3xl', margin: '0 auto' })}>
+<div id="root" class={vstack({ gap: '6', maxW: '3xl', margin: '0 auto', px: '4', lg: { p: 0 } })}>
 	<h1
 		class={css({
 			w: 'full',

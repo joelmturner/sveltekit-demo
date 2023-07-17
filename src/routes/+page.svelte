@@ -3,15 +3,25 @@
 	import { css } from 'styled-system/css';
 	import { hstack, vstack } from 'styled-system/patterns';
 	import type { Illustrations } from '$lib/types';
+	import { sortCategories } from '$lib/utils';
 	import { ILLUSTRATION_CATEGORIES } from '$lib/constants';
 
 	export let data: { post: Illustrations };
-	const postGroups = Object.keys(ILLUSTRATION_CATEGORIES);
+	const postGroups = Object.keys(ILLUSTRATION_CATEGORIES).sort(sortCategories);
 </script>
 
 <div class={vstack({ gap: '6', w: '100%' })}>
 	{#each postGroups as postGroup}
-		<div class={hstack({ gap: '6', w: '100%' })}>
+		<div
+			class={vstack({
+				gap: '1',
+				w: '100%',
+				sm: {
+					flexDirection: 'row',
+					gap: '3'
+				}
+			})}
+		>
 			<h2
 				id={postGroup}
 				class={css({
@@ -25,9 +35,13 @@
 			<div
 				class={css({
 					fontSize: 'xs',
-					w: '1/3',
-					textAlign: 'right',
-					textDecoration: 'underline'
+					w: 'full',
+					textAlign: 'left',
+					sm: {
+						w: '1/3',
+						textAlign: 'right',
+						textDecoration: 'underline'
+					}
 				})}
 			>
 				<a href="#root">back to top</a>
@@ -53,5 +67,4 @@
 			{/each}
 		</div>
 	{/each}
-	<!-- <pre>{JSON.stringify(data?.post?.inktober2017, null, 2)}</pre> -->
 </div>
