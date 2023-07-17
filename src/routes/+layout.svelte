@@ -13,6 +13,7 @@
 		class={css({
 			w: 'full',
 			fontSize: 'xl',
+			mt: '4',
 			'& a': {
 				textDecoration: 'underline'
 			}
@@ -22,6 +23,7 @@
 		and
 		<a href="https://panda-css.com/">panda css</a> by
 		<a href="https://joelmturner.com">@joelmturner</a>
+		(<a href="https://github.com/joelmturner/sveltekit-demo">GitHub</a>)
 	</h1>
 	<ul class={hstack({ gap: '3', flexWrap: 'wrap', my: '3' })}>
 		{#each postGroups as postGroup}
