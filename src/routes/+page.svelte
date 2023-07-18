@@ -15,6 +15,9 @@
 		lightboxPost = null;
 	}
 
+	function getId(url: string) {
+		return url.match(/illustration\/([^/.]+)\.\w+$/)?.[0] ?? url;
+	}
 	const postGroups = Object.keys(ILLUSTRATION_CATEGORIES).sort(sortCategories);
 </script>
 
@@ -76,9 +79,8 @@
 					<CldImage
 						width="400"
 						height="400"
-						src={post.url}
+						src={getId(post.url)}
 						alt={post.id}
-						sizes="50vw"
 						class={css({ borderRadius: 'md' })}
 					/>
 				</button>
@@ -91,9 +93,8 @@
 			<CldImage
 				width="800"
 				height="800"
-				src={lightboxPost.url}
+				src={getId(lightboxPost.url)}
 				alt={lightboxPost.id}
-				sizes="80vw"
 				aspectRatio={1 / 1}
 				class={css({ borderRadius: 'md' })}
 			/>
