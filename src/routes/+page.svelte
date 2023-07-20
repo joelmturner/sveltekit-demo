@@ -2,12 +2,12 @@
 	import { CldImage } from 'svelte-cloudinary';
 	import { css } from 'styled-system/css';
 	import { vstack } from 'styled-system/patterns';
-	import type { IllustrationItem, Illustrations } from '$lib/types';
+	import type { IllustrationItem, IllustrationTag, Illustrations } from '$lib/types';
 	import { sortCategories } from '$lib/utils';
 	import { ILLUSTRATION_CATEGORIES } from '$lib/constants';
 	import Modal from '../components/Modal.svelte';
 
-	export let data: { post: Illustrations };
+	export let data: { posts: Illustrations };
 
 	let showModal = false;
 	let lightboxPost: IllustrationItem | null = null;
@@ -15,10 +15,17 @@
 		lightboxPost = null;
 	}
 
+	// parse the url to get the image id
 	function getId(url: string) {
 		return url.match(/illustration\/([^/.]+)\.\w+$/)?.[0] ?? url;
 	}
-	const postGroups = Object.keys(ILLUSTRATION_CATEGORIES).sort(sortCategories);
+	const postGroups: IllustrationTag[] = (
+		Object.keys(ILLUSTRATION_CATEGORIES) as IllustrationTag[]
+	).sort(sortCategories);
+
+	function illustrations(postGroup: IllustrationTag) {
+		return data?.posts?.[postGroup];
+	}
 </script>
 
 <div class={vstack({ gap: '6', w: '100%', position: 'relative' })}>
@@ -67,10 +74,9 @@
 				width: '100%'
 			})}
 		>
-			{#each data?.post?.[postGroup].sort((a, b) => b.id - a.id) as post}
+			{#each illustrations(postGroup) as post}
 				<button
 					on:click={() => {
-						console.log('clicked');
 						showModal = true;
 						lightboxPost = post;
 					}}
@@ -95,7 +101,6 @@
 				height="800"
 				src={getId(lightboxPost.url)}
 				alt={lightboxPost.id}
-				aspectRatio={1 / 1}
 				class={css({ borderRadius: 'md' })}
 			/>
 		{/if}
